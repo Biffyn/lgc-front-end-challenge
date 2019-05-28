@@ -147,22 +147,6 @@
       "user": "Natashia",
       "date": "2016-03-17",
       "content": "Nunc facilisis nisi vitae dapibus sodales. Proin vitae nunc turpis."
-    },
-    {
-      "user": "top level",
-      "content": "top level",
-      "postId": "10",
-      "date": "2019-05-28T18:00:54.925Z",
-      "parent_id": null,
-      "id": 8
-    },
-    {
-      "user": "re",
-      "content": "ee",
-      "postId": "10",
-      "date": "2019-05-28T18:01:00.791Z",
-      "parent_id": 8,
-      "id": 9
     }
   ]
 }
