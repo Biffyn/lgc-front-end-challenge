@@ -1,0 +1,142 @@
+<section class="fdb-block bg-dark hero">
+  <div class="container">
+    <div class="row text-center">
+      <div *ngIf="post" class="col-12">
+        <h1>{{ post.title }}</h1>
+        <h3>
+          <em>{{ post.author }} <span class="px-2">//</span> {{ post.publish_date | date: 'fullDate' }}</em>
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="fdb-block">
+  <div *ngIf="post" class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        <p class="lead">{{ post.description }}</p>
+      </div>
+    </div>
+    <div class="col text-left my-5" [innerHTML]="post.content"></div>
+  </div>
+</section>
+
+<section class="fdb-block off-white">
+  <div *ngIf="post" class="container mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="comments col-md-12" id="comments">
+          <h3 class="my-4">Comments</h3>
+          <div *ngIf="post.comments">
+            <div class="comment mb-5 row fdb-box" *ngFor="let comment of topLevelComments">
+              <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1 mb-3 mb-sm-1">
+                <a href=""
+                  ><img class="mx-auto rounded-circle img-fluid" src="../../../../assets/img/avatar.svg" alt="avatar"
+                /></a>
+              </div>
+              <div class="comment-content col-md-11 col-sm-10">
+                <h6 class="small comment-meta">
+                  <a href="#">{{ comment.user }}</a> - {{ comment.date | date: 'mediumDate' }}
+                </h6>
+                <div class="comment-body">
+                  <p>
+                    {{ comment.content }}
+                    <br />
+                    <a
+                      href="javascript:void(0)"
+                      (click)="setParentId(comment.id); modalService.getModal('commentModal').open()"
+                      class="text-right small"
+                      ><i class="ion-reply"></i> Reply</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div
+                *ngFor="let reply of getReplies(comment.id)"
+                class="comment-reply col-md-11 offset-md-1 col-sm-10 offset-sm-2 mt-2"
+              >
+                <div class="row">
+                  <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1 mb-3 mb-sm-1">
+                    <a href=""
+                      ><img
+                        class="mx-auto rounded-circle img-fluid"
+                        src="../../../../assets/img/avatar.svg"
+                        alt="avatar"
+                    /></a>
+                  </div>
+                  <div class="comment-content col-md-11 col-sm-10 col-12">
+                    <h6 class="small comment-meta">
+                      <a href="javascript:void(0)">{{ reply.user }}</a> - {{ reply.date | date: 'mediumDate' }}
+                    </h6>
+                    <div class="comment-body">
+                      <p>
+                        {{ reply.content }}
+                        <br />
+                        <a
+                          href="javascript:void(0)"
+                          (click)="setParentId(comment.id); modalService.getModal('commentModal').open()"
+                          class="text-right small"
+                          ><i class="ion-reply"></i> Reply</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <button class="btn btn-sm btn-primary" (click)="modalService.getModal('commentModal').open()">
+                Add Comment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-smart-modal #commentModal identifier="commentModal">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="commentForm" (submit)="addComment()">
+          <div class="row">
+            <div class="col">
+              <h4>Join the conversation</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                aria-label="Enter your name"
+                formControlName="user"
+              />
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <textarea
+                class="form-control"
+                formControlName="comment"
+                cols="30"
+                rows="3"
+                placeholder="Comment"
+              ></textarea>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <button class="btn btn-sm btn-primary" type="submit">Comment</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ngx-smart-modal>

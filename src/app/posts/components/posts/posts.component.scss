@@ -1,0 +1,23 @@
+.post-title {
+  color: #444444;
+}
+
+.off-white {
+  background-color: rgba(0, 177, 194, 0.05);
+}
+
+.meta-icon {
+  margin-left: 16px;
+  margin-right: 6px;
+
+  &:first-of-type {
+    margin-left: 0;
+    margin-right: 6px;
+  }
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}

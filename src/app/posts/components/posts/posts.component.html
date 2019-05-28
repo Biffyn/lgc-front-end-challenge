@@ -1,0 +1,45 @@
+<section class="fdb-block hero">
+  <div class="container align-items-center justify-content-center d-flex">
+    <div class="row align-items-center text-left">
+      <div class="col-12 col-sm-6">
+        <img alt="image" class="img-fluid" src="./assets/img/blogging.svg" />
+      </div>
+
+      <div class="col-12 col-lg-5 ml-auto pt-5 pt-lg-0">
+        <h1>The LGC Blog</h1>
+        <p class="lead">
+          Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One
+          day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of
+          Grammar.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="fdb-block off-white">
+  <div class="container" *ngIf="posts$">
+    <div class="row text-left">
+      <div *ngFor="let post of posts$ | async" class="col-md-12 col-lg-6 m-auto py-4">
+        <div class="fdb-box" style="min-height: 375px">
+          <a [routerLink]="['post', post.id]">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p>
+              <fa-icon [icon]="['far', 'user']" class="meta-icon"></fa-icon>
+              <a href="javascript:void(0)">{{ post.author }}</a>
+              <fa-icon [icon]="['far', 'calendar-alt']" class="meta-icon"></fa-icon>
+              {{ post.publish_date | date: 'mediumDate' }}
+              <fa-icon [icon]="['far', 'comments']" class="meta-icon"></fa-icon>
+              {{ post.commentCount }}
+            </p>
+            <p class="lead">
+              {{ post.description }}
+            </p>
+            <p class="mt-4">
+              <a [routerLink]="['post', post.id]">Read More > </a>
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
