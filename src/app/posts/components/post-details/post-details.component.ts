@@ -41,6 +41,14 @@ export class PostDetailsComponent implements OnInit {
     });
   }
 
+  public get user() {
+    return this.commentForm.get('user');
+  }
+
+  public get comment() {
+    return this.commentForm.get('comment');
+  }
+
   public addComment(): void {
     if (!this.commentForm.valid) {
       return;

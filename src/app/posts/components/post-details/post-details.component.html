@@ -98,7 +98,7 @@
     </div>
   </div>
 </section>
-<ngx-smart-modal #commentModal identifier="commentModal">
+<ngx-smart-modal #commentModal identifier="commentModal" (onClose)="commentForm.reset()">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -116,7 +116,18 @@
                 placeholder="Name"
                 aria-label="Enter your name"
                 formControlName="user"
+                attr.aria-invalid="{{ (user.dirty || user.touched) && user.invalid ? true : false }}"
+                [ngClass]="{ 'is-invalid': (user.dirty || user.touched) && user.invalid }"
+                aria-required="true"
+                autocomplete="off"
+                required
               />
+              <div
+                *ngIf="(user.dirty || user.touched) && user.invalid && !!user.errors.required"
+                class="invalid-feedback"
+              >
+                <div>Name is required.</div>
+              </div>
             </div>
           </div>
           <div class="row mt-4">
@@ -127,12 +138,24 @@
                 cols="30"
                 rows="3"
                 placeholder="Comment"
+                aria-required="true"
+                aria-errormessage="comment-required"
+                attr.aria-invalid="{{ (comment.dirty || comment.touched) && comment.invalid ? true : false }}"
+                [ngClass]="{ 'is-invalid': (comment.dirty || comment.touched) && comment.invalid }"
+                autocomplete="off"
+                required
               ></textarea>
+              <div
+                *ngIf="(comment.dirty || comment.touched) && comment.invalid && !!comment.errors.required"
+                class="invalid-feedback"
+              >
+                <div>Comment is required.</div>
+              </div>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col">
-              <button class="btn btn-sm btn-primary" type="submit">Comment</button>
+              <button class="btn btn-sm btn-primary" [disabled]="!commentForm.valid" type="submit">Comment</button>
             </div>
           </div>
         </form>

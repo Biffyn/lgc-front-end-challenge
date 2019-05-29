@@ -19,3 +19,8 @@
     }
   }
 }
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background-image: none !important;
+}
