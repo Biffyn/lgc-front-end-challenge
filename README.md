@@ -9,8 +9,6 @@ This is the Source repo for LetsGetChecked front end challenge REST API
 - JSON Server
 - Bootstrap 4
 
-## Live Demo
-
 ## Getting started
 
 **Make sure you have at least Node 8.x or higher (w/ npm 5+) installed!**
@@ -25,7 +23,7 @@ This is the Source repo for LetsGetChecked front end challenge REST API
 - Open console app of choice.
 - Navigate to local repo location.
 - If not already done, run `npm install` to install project dependencies.
-- Run `npm run dev`
+- Run `npm start`
 
 Both the dev server and Angular app will start via [concurrently](https://github.com/kimmobrunfeldt/concurrently/#readme). The application will open in the os default browser at `http://localhost:4200/`.
 
